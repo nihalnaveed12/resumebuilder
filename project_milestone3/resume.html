@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Resume</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .editable {
+        cursor: text;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+        <div class="btn">
+      <button id="saveBtn">Save Changes</button>
+    </div>
+      <div class="resume">
+        <div class="left-side">
+          <div class="profile-info">
+            <div class="profile"></div>
+            <!-- Name and Role -->
+            <h2 id="displayName" class="editable" contenteditable="true">
+              Nihal Naveed
+            </h2>
+            <h6 id="displayRole" class="editable" contenteditable="true">
+              Front-End Developer
+            </h6>
+          </div>
+
+          <div class="contact-info">
+            <h2 class="contact">CONTACT</h2>
+            <div class="num">
+              <i class="fa-solid fa-phone"></i>
+              <p id="displayPhone" class="editable" contenteditable="true">
+                03128050626
+              </p>
+            </div>
+            <div class="gmail">
+              <i class="fa-solid fa-envelope"></i>
+              <p id="displayEmail" class="editable" contenteditable="true">
+                nihalnaveed50@gmail.com
+              </p>
+            </div>
+            <div class="address">
+              <i class="fa-solid fa-location-dot"></i>
+              <p id="displayAddress" class="editable" contenteditable="true">
+                Gulshan-e-Iqbal
+              </p>
+            </div>
+          </div>
+
+          <div class="education-info">
+            <h2>EDUCATION</h2>
+            <div class="college">
+              <p id="displayCollege" class="editable" contenteditable="true">
+                Govt Degree College
+              </p>
+            </div>
+            <div class="group">
+              <p id="displayGroup" class="editable" contenteditable="true">
+                Computer Science
+              </p>
+            </div>
+            <div class="year">
+              <p id="displayStartYear" class="editable" contenteditable="true">
+                2024
+              </p>
+              _
+              <p id="displayEndYear" class="editable" contenteditable="true">
+                2026
+              </p>
+            </div>
+          </div>
+
+          <div class="skills-info">
+            <h2>SKILLS</h2>
+            <ul id="displaySkills">
+              <!-- Skills will be inserted dynamically here -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right side -->
+        <div class="right-side">
+          <div class="about-profile">
+            <h1>PROFILE</h1>
+            <p id="displayProfile" class="editable" contenteditable="true">
+              <!-- Profile description dynamically -->
+            </p>
+          </div>
+
+          <div class="work-experience">
+            <h1>WORK EXPERIENCE</h1>
+            <div class="company-details">
+              <h3 id="displayCompany" class="editable" contenteditable="true">
+                GIAIC
+              </h3>
+              <p id="displayWorkYear" class="editable" contenteditable="true">
+                2024
+              </p>
+            </div>
+            <div class="role">
+              <h5 id="displayRoleTitle" class="editable" contenteditable="true">
+                Front-End Developer
+              </h5>
+              <p
+                id="displayWorkDescription"
+                class="editable"
+                contenteditable="true"
+              >
+                <!-- Work experience details -->
+              </p>
+            </div>
+          </div>
+
+          <div class="languages">
+            <h1>LANGUAGES</h1>
+            <ul id="displayLanguages"></ul>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function populateResumeData() {
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const profilePictureUrl = localStorage.getItem("profilePicture");
+
+        if (profilePictureUrl) {
+          const profileImageElement = document.querySelector(".profile");
+
+          let img = profileImageElement.querySelector("img");
+          if (!img) {
+            img = document.createElement("img");
+            profileImageElement.appendChild(img);
+          }
+
+          img.src = profilePictureUrl;
+        }
+
+        // Basic Information
+        document.getElementById("displayName").textContent =
+          urlParams.get("name") || "Nihal Naveed";
+        document.getElementById("displayRole").textContent =
+          urlParams.get("role") || "Front-End Developer";
+        document.getElementById("displayPhone").textContent =
+          urlParams.get("phone") || "03128050626";
+        document.getElementById("displayEmail").textContent =
+          urlParams.get("email") || "nihalnaveed50@gmail.com";
+        document.getElementById("displayAddress").textContent =
+          urlParams.get("address") || "Gulshan-e-Iqbal";
+
+        // Education
+        document.getElementById("displayCollege").textContent =
+          urlParams.get("college") || "Govt Degree College";
+        document.getElementById("displayGroup").textContent =
+          urlParams.get("group") || "Computer Science";
+        document.getElementById("displayStartYear").textContent =
+          urlParams.get("startYear") || "2024";
+        document.getElementById("displayEndYear").textContent =
+          urlParams.get("endYear") || "2026";
+
+        // Profile Description
+        document.getElementById("displayProfile").textContent =
+          urlParams.get("profile") ||
+          "Your profile description will appear here.";
+
+        // Work Experience
+        document.getElementById("displayCompany").textContent =
+          urlParams.get("company") || "GIAIC";
+        document.getElementById("displayWorkYear").textContent =
+          urlParams.get("workYear") || "2024";
+        document.getElementById("displayRoleTitle").textContent =
+          urlParams.get("roleTitle") || "Front-End Developer";
+        document.getElementById("displayWorkDescription").textContent =
+          urlParams.get("workDescription") ||
+          "Work experience details go here.";
+
+        // Skills
+        const skills = urlParams.get("skills")
+          ? urlParams.get("skills").split(",")
+          : ["HTML", "CSS", "JavaScript"];
+        const skillsList = document.getElementById("displaySkills");
+        const skillLevels = urlParams.get("skillLevel")
+          ? urlParams.get("skillLevel").split(",")
+          : ["80", 70, 60, 50];
+
+        skills.forEach((skill, index) => {
+          const li = document.createElement("li");
+
+          const skillName = document.createTextNode(skill.trim());
+          const skillLevel = skillLevels[index]
+            ? `${skillLevels[index].trim()}%`
+            : "50%";
+
+          const barContainer = document.createElement("div");
+          barContainer.classList.add("bar-container");
+
+          const bar = document.createElement("div");
+          bar.classList.add("bar");
+          bar.style.width = skillLevel;
+
+          barContainer.appendChild(bar);
+
+          li.appendChild(skillName);
+          li.appendChild(barContainer);
+
+          skillsList.appendChild(li);
+        });
+
+        // Languages
+        const languages = urlParams.get("languages")
+          ? urlParams.get("languages").split(",")
+          : ["English", "Urdu"];
+        const languagesList = document.getElementById("displayLanguages");
+        languages.forEach((language) => {
+          const li = document.createElement("li");
+          li.textContent = language.trim();
+          languagesList.appendChild(li);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", populateResumeData);
+
+      // Save changes
+      const saveBtn = document.getElementById("saveBtn");
+      saveBtn.addEventListener("click", () => {
+        const name = document.getElementById("displayName").textContent;
+        const role = document.getElementById("displayRole").textContent;
+        const phone = document.getElementById("displayPhone").textContent;
+        const email = document.getElementById("displayEmail").textContent;
+        const address = document.getElementById("displayAddress").textContent;
+        const college = document.getElementById("displayCollege").textContent;
+        const group = document.getElementById("displayGroup").textContent;
+        const startYear =
+          document.getElementById("displayStartYear").textContent;
+        const endYear = document.getElementById("displayEndYear").textContent;
+        const profile = document.getElementById("displayProfile").textContent;
+        const company = document.getElementById("displayCompany").textContent;
+        const workYear = document.getElementById("displayWorkYear").textContent;
+        const roleTitle =
+          document.getElementById("displayRoleTitle").textContent;
+        const workDescription = document.getElementById(
+          "displayWorkDescription"
+        ).textContent;
+
+        // Save the data in localStorage or send it to a server
+        const resumeData = {
+          name,
+          role,
+          phone,
+          email,
+          address,
+          college,
+          group,
+          startYear,
+          endYear,
+          profile,
+          company,
+          workYear,
+          roleTitle,
+          workDescription,
+        };
+
+        localStorage.setItem("resumeData", JSON.stringify(resumeData));
+        alert("Changes saved successfully!");
+      });
+    </script>
+  </body>
+</html>

@@ -286,15 +286,20 @@ const shareLink = document.getElementById("shareLink");
 
 shareBtn.addEventListener("click", () => {
   const resumeData = localStorage.getItem("resumeData");
-  
   const username = document.getElementById("displayName").textContent
-  .trim()
-  .replace(/\s+/g, "-")
-  .toLowerCase();
+    .trim()
+    .replace(/\s+/g, "-")
+    .toLowerCase();
 
-const shareableURL = `${window.location.origin}/resume-builder4/resume.html`;
-prompt("Copy this link to share your resume:", shareableURL);
+  // Generate a unique identifier or token for the resume
+  const uniqueIdentifier = new Date().getTime(); // Example: timestamp as a unique identifier
+
+  // Construct the shareable URL with the unique identifier
+  const shareableURL = `${window.location.origin}/resume-builder4/resume.html?username=${username}&id=${uniqueIdentifier}`;
+
+  prompt("Copy this link to share your resume:", shareableURL);
 });
+
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>

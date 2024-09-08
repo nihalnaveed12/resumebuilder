@@ -292,10 +292,9 @@ shareBtn.addEventListener("click", () => {
   .replace(/\s+/g, "-")
   .toLowerCase();
 
-const shareableURL = `${window.location.origin}/${username}/resume`;
+const shareableURL = `${window.location.origin}/resume-builder4/resume.html`;
 prompt("Copy this link to share your resume:", shareableURL);
 });
-populateResumeData();
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>

@@ -281,25 +281,26 @@ downloadBtn.addEventListener("click", () => {
     .save("resume.pdf");
 });
 // Generate unique URL and share resume
+// Generate unique URL and share resume
 const shareBtn = document.getElementById("shareBtn");
 const shareLink = document.getElementById("shareLink");
 
 shareBtn.addEventListener("click", () => {
   const resumeData = localStorage.getItem("resumeData");
-  const username = document.getElementById("displayName").textContent
-    .trim()
-    .replace(/\s+/g, "-")
-    .toLowerCase();
-
-  // Generate a unique identifier or token for the resume
-  const uniqueIdentifier = new Date().getTime(); // Example: timestamp as a unique identifier
-
-  // Construct the shareable URL with the unique identifier
-  const shareableURL = `${window.location.origin}/resume-builder4/resume.html?username=${username}&id=${uniqueIdentifier}`;
-
-  prompt("Copy this link to share your resume:", shareableURL);
+  
+  // Create a unique key for the resume (you could use UUID or Date here)
+  const uniqueKey = `resume_${Date.now()}`;
+  
+  // Save the data with the unique key
+  localStorage.setItem(uniqueKey, resumeData);
+  
+  // Generate a shareable URL (in a real app, this would be a backend URL)
+  const currentUrl = window.location.href;
+  const shareableUrl = `${currentUrl}?resumeId=${uniqueKey}`;
+  
+  // Display the shareable link
+  prompt("Copy This link and Share Your Resume" , shareableUrl)
 });
-
 
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>

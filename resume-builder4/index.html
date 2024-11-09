@@ -3,27 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css">
     <title>Resume Builder Home</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding-top: 100px;
-      }
-      .start-btn {
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: rgb(29, 65, 105);
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-    </style>
   </head>
   <body>
-    <h1>Welcome to the Resume Builder</h1>
-    <p>Click the button below to create your resume</p>
-    <button class="start-btn" onclick="window.location.href='form.html'">Start Creating</button>
+    <header class="header">
+      <nav class="nav">
+        <h1>
+          Resume Builder
+        </h1>
+        <button>Login</button>
+      </nav>
+    </header>
+    <main class="main">
+      <div class="hero">
+
+      <div class="text-sec">
+      <h1>Welcome to the Resume Builder</h1>
+      <p>You wont believe how quickly you can create a professional CV.</p>
+      <button class="start-btn" onclick="window.location.href='resume.html'">Start Creating</button>
+    </div>
+
+    <div class="video-div">
+      <video loop autoplay muted playsinline class="video">
+        <source src="https://www.freshresume.co/video/Freshresume_t1_new.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+    </main>
   </body>
 </html>

@@ -5,7 +5,7 @@
   }
   
   body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(181, 198, 223);
     max-width: 1280px;
     margin: 0 auto;
   }
@@ -171,31 +171,25 @@
   }
   
   .btn{
-    padding: 30px; 
     display: flex;
-    gap: 20px;
-    width: 80%;
-    margin: auto;
     justify-content: center;
   }
-  #saveBtn , #downloadBtn , #shareBtn{
+
+#downloadBtn{
     background-color: rgb(29, 65, 105);
     color: white;
-    padding: 10px;
+    padding: 10px 16px;
     outline: none;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
   }
 
-  #saveBtn:hover{
-    background-color: rgb(68, 90, 156);
-  }
+  
   #downloadBtn:hover{
-    background-color: rgb(68, 90, 156);
+    background-color: rgb(36, 61, 112);
   }
-  #shareBtn:hover{
-    background-color: rgb(68, 90, 156);
-  }
+
 
  .form-h1{
   text-align: center;
@@ -209,13 +203,14 @@
   }
 
   .data{
-    margin:20px auto;
+    margin:64px auto;
     background-color: rgb(247, 247, 247);
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 4px 8px -8px rgba(0,0,0,0.63);
+    box-shadow: 4px 6px 16px -10px rgba(0,0,0,0.63);
     justify-content: center;
     width: 90%;
+    border-radius: 10px;
   }
 
   .data h1{
@@ -223,6 +218,7 @@
     background-color: rgb(29, 65, 105);
     color: white;
     margin-bottom: 10px ;
+    border-radius: 8px;
   }
 
   .data-container{
